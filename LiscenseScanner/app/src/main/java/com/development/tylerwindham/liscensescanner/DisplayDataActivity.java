@@ -17,6 +17,7 @@ public class DisplayDataActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //String data = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
+
         TextView textView = (TextView) findViewById(R.id.license_data);
         //textView.setText(data);
     }
