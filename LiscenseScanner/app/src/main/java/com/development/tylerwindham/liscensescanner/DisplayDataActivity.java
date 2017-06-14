@@ -41,6 +41,10 @@ public class DisplayDataActivity extends AppCompatActivity {
         int resultCode = CommonStatusCodes.SUCCESS;
         onBarcodeParsing(requestCode, resultCode, intent);
 
+        setValues();
+    }
+
+    public void setValues(){
         EditText etFistName = (EditText)findViewById(R.id.etFirstName);
         etFistName.setText(personalInfo.getFirstName());
         EditText etMiddleName = (EditText)findViewById(R.id.etMiddleName);
@@ -55,7 +59,15 @@ public class DisplayDataActivity extends AppCompatActivity {
         etDateOfBirth.setText(personalInfo.getDateOfBirth());
     }
 
+    public void onGoTakePicture(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
+    public void onGoVehicle(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     protected void onBarcodeParsing(int requestCode, int resultCode, Intent data) {
         ArrayList<String> allKeys = new ArrayList<String>();
@@ -186,8 +198,5 @@ public class DisplayDataActivity extends AppCompatActivity {
         }
     }
 
-    public void onGoTakePicture(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }
