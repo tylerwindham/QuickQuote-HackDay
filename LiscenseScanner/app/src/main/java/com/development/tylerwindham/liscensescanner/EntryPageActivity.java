@@ -7,6 +7,8 @@ import android.view.View;
 
 public class EntryPageActivity extends AppCompatActivity {
 
+    private static final int RC_BARCODE_CAPTURE = 9001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,7 +16,11 @@ public class EntryPageActivity extends AppCompatActivity {
     }
 
     public void onGoTakePicture(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+
+        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+        intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+        intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
+
+        startActivityForResult(intent, RC_BARCODE_CAPTURE);
     }
 }
