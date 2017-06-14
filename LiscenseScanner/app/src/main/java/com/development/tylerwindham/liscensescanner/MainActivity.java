@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.development.tylerwindham.licenseObjects.Address;
+import com.development.tylerwindham.licenseObjects.PersonalInfo;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -116,6 +118,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         allKeys.add(Customer_Id_Number);
         allKeys.add(Date_Of_Birth);
         HashMap<String, String> myData = new HashMap<String, String>();
+        Address address = new Address();
+        PersonalInfo personalInfo = new PersonalInfo();
 
         if (requestCode == RC_BARCODE_CAPTURE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
@@ -153,6 +157,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     {
                         Log.v("TAG", "users family name:" + myData.get(Customer_Family_Name));
                         String lname = myData.get(Customer_Family_Name).trim();
+                        personalInfo.setLastName(lname);
+
                     }
                     if (myData.containsKey(Customer_Given_Name))
                     {
@@ -162,6 +168,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             String CustomerName[] = myData.get(Customer_Given_Name).split(" ");
                             String fname = CustomerName[0].trim();
                             String mname = CustomerName[1].substring(0, 1).trim();
+                            personalInfo.setFirstName(fname);
                         }
                         catch (Exception e)
                         {
@@ -173,7 +180,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Log.v("TAG", "Address line 1 :" + myData.get(Street_Address_1));
                         try
                         {
-                            String address = myData.get(Street_Address_1).trim();
+                            String addressLine = myData.get(Street_Address_1).trim();
+                            address.setStreet(addressLine);
                         }
                         catch (Exception e)
                         {
@@ -184,23 +192,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     {
                         Log.v("TAG", "City:" + myData.get(City));
                         String city = myData.get(City).trim();
+                        address.setCity(city);
                     }
                     if (myData.containsKey(Postal_Code))
                     {
                         Log.v("TAG", "Pin Code:" + myData.get(Postal_Code));
                         String zipcode = myData.get(Postal_Code).substring(0, 5).trim();
+                        address.setZipCode(zipcode);
+                    }
+                    if (myData.containsKey(Jurisdction_Code))
+                    {
+                        Log.v("TAG", "State:" + myData.get(Jurisdction_Code));
+                        String state = myData.get(Jurisdction_Code);
+                        address.setState(state);
                     }
                     if (myData.containsKey(Date_Of_Birth))
                     {
                         Log.v("TAG", "Birth Date    :" + myData.get(Date_Of_Birth));
                         String birthday = myData.get(Date_Of_Birth).substring(0, 2) + "/" + myData.get(Date_Of_Birth).substring(2, 4)
                                 + "/" + myData.get(Date_Of_Birth).substring(4);
+                        personalInfo.setDateOfBirth(birthday);
                     }
                     if (myData.containsKey(Customer_Id_Number))
                     {
                         String licence_number = myData.get(Customer_Id_Number).trim();
                         Log.e("TAG", "Licence Number is :" + licence_number);
+                        personalInfo.setLicenseNumber(licence_number);
                     }
+                    personalInfo.setAddress(address);
+                    data.putExtra("personalInfo",personalInfo);
                     statusMessage.setText(R.string.barcode_success);
                     barcodeValue.setText(barcode.displayValue);
                     Log.d(TAG, "Barcode read: " + barcode.displayValue);
