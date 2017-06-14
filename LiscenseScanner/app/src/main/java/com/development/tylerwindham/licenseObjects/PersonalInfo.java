@@ -12,7 +12,7 @@ public class PersonalInfo {
     private String licenseNumber;
     private String dateOfBirth;
     private Address address;
-    
+
     public String getFirstName() {
         return firstName;
     }

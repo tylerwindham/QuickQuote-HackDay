@@ -15,10 +15,10 @@ public class DisplayDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_data);
 
         Intent intent = getIntent();
-        String data = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        //String data = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         TextView textView = (TextView) findViewById(R.id.license_data);
-        textView.setText(data);
+        //textView.setText(data);
     }
 
     public void onGoTakePicture(View view){

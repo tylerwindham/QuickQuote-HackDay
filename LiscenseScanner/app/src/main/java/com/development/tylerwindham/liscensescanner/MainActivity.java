@@ -1,154 +1,220 @@
+/*
+ * Copyright (C) The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.development.tylerwindham.liscensescanner;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
-import android.util.SparseArray;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+/**
+ * Main activity demonstrating how to pass extra parameters to an activity that
+ * reads barcodes.
+ */
+public class MainActivity extends Activity implements View.OnClickListener {
 
-public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.development.tylerwindham.licensescanner.MESSAGE";
+    // use a compound button so either checkbox or switch widgets work.
+    private CompoundButton autoFocus;
+    private CompoundButton useFlash;
+    private TextView statusMessage;
+    private TextView barcodeValue;
 
-    SurfaceView cameraView;
-    CameraSource cameraSource;
-    final int RequestCameraPermissionID = 1001;
-    Button captureButton;
+    private static final int RC_BARCODE_CAPTURE = 9001;
+    private static final String TAG = "BarcodeMain";
 
-    String liscense_data;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case RequestCameraPermissionID:
-            {
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        return ;
-                    }
-                    try{
-                        cameraSource.start(cameraView.getHolder());
-                    }catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        }
-    }
+    public final String Customer_Family_Name = "DCS", Customer_Given_Name = "DCT",
+            Street_Address_1 = "DAG", City = "DAI", Jurisdction_Code = "DAJ", Postal_Code = "DAK",
+            Customer_Id_Number = "DAQ", Date_Of_Birth = "DBB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cameraView = (SurfaceView) findViewById(R.id.surface_view);
-        captureButton = (Button) findViewById(R.id.capture_button);
+        statusMessage = (TextView)findViewById(R.id.status_message);
+        barcodeValue = (TextView)findViewById(R.id.barcode_value);
 
+        autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
+        useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-        if (!textRecognizer.isOperational()) {
-            Log.w("MainActivity", "Detector dependencies are not yet available");
-        } else {
-            cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer).setFacing(CameraSource.CAMERA_FACING_BACK).setRequestedPreviewSize(1280, 1024).setRequestedFps(2.0f).setAutoFocusEnabled(true).build();
-            cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
+        findViewById(R.id.read_barcode).setOnClickListener(this);
+    }
 
-                @Override
-                public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                    try {
-                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(MainActivity.this,
-                                    new String[]{Manifest.permission.CAMERA},
-                                    RequestCameraPermissionID);
-                            return;
-                        }
-                        cameraSource.start(cameraView.getHolder());
-                    }catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.read_barcode) {
+            // launch barcode activity.
+            Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+            intent.putExtra(BarcodeCaptureActivity.AutoFocus, autoFocus.isChecked());
+            intent.putExtra(BarcodeCaptureActivity.UseFlash, useFlash.isChecked());
 
-                @Override
-                public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
-                }
-
-                @Override
-                public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                    cameraSource.stop();
-
-                }
-            });
-
-
-            textRecognizer.setProcessor(new Detector.Processor<TextBlock>(){
-
-                @Override
-                public void release() {
-
-                }
-
-                @Override
-                public void receiveDetections(Detector.Detections<TextBlock> detections) {
-                    final SparseArray<TextBlock> items = detections.getDetectedItems();
-                    if(items.size() !=0){
-                                /*textView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        StringBuilder stringBuilder = new StringBuilder();
-                                        for(int i=0; i < items.size(); ++i){
-                                            TextBlock item = items.valueAt(i);
-                                            stringBuilder.append(item.getValue());
-                                            stringBuilder.append("\n");
-                                        }
-                                        Intent intent = new Intent(getApplicationContext(), DisplayDataActivity.class);
-                                        intent.putExtra(EXTRA_MESSAGE, stringBuilder.toString());
-                                        startActivity(intent);
-                                        textView.setText(stringBuilder.toString());
-                                    }
-                                });*/
-                        StringBuilder stringBuilder = new StringBuilder();
-                        for(int i=0; i < items.size(); ++i){
-                            TextBlock item = items.valueAt(i);
-                            stringBuilder.append(item.getValue());
-                            stringBuilder.append("\n");
-                        }
-
-                        liscense_data = stringBuilder.toString();
-
-                    }
-                }
-            });
-
+            startActivityForResult(intent, RC_BARCODE_CAPTURE);
         }
-
-        captureButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DisplayDataActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, liscense_data);
-                startActivity(intent);
-
-            }
-        });
 
     }
 
+    /**
+     * Called when an activity you launched exits, giving you the requestCode
+     * you started it with, the resultCode it returned, and any additional
+     * data from it.  The <var>resultCode</var> will be
+     * {@link #RESULT_CANCELED} if the activity explicitly returned that,
+     * didn't return any result, or crashed during its operation.
+     * <p/>
+     * <p>You will receive this call immediately before onResume() when your
+     * activity is re-starting.
+     * <p/>
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode  The integer result code returned by the child activity
+     *                    through its setResult().
+     * @param data        An Intent, which can return result data to the caller
+     *                    (various data can be attached to Intent "extras").
+     * @see #startActivityForResult
+     * @see #createPendingResult
+     * @see #setResult(int)
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        ArrayList<String> allKeys = new ArrayList<String>();
+        allKeys.add(Customer_Family_Name);
+        allKeys.add(Customer_Given_Name);
+        allKeys.add(Street_Address_1);
+        allKeys.add(City);
+        allKeys.add(Jurisdction_Code);
+        allKeys.add(Postal_Code);
+        allKeys.add(Customer_Id_Number);
+        allKeys.add(Date_Of_Birth);
+        HashMap<String, String> myData = new HashMap<String, String>();
+
+        if (requestCode == RC_BARCODE_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    String barcodeResult = barcode.rawValue;
+                    String lines[] = barcodeResult.split("\\r?\\n");
+                    for (int i = 0; i < lines.length; i++)
+                    {
+                        String str = lines[i];
+                        if (str.contains("ANSI"))
+                        {
+                            str = str.substring(str.indexOf("DL"));
+                            String str1[] = str.split("DL");
+                            if (str1.length > 1)
+                            {
+                                str = str1[str1.length - 1];
+                            }
+                        }
+                        if (str.length() > 3)
+                        {
+                            String key = str.substring(0, 3);
+                            String value = str.substring(3);
+                            if (allKeys.contains(key))
+                            {
+                                if (!value.equalsIgnoreCase("None"))
+                                {
+                                    myData.put(allKeys.get(allKeys.indexOf(key)), value);
+                                }
+                            }
+                        }
+                        Log.e("RESULT ", "<<>>" + lines[i]);
+                    }
+                    if (myData.containsKey(Customer_Family_Name))
+                    {
+                        Log.v("TAG", "users family name:" + myData.get(Customer_Family_Name));
+                        String lname = myData.get(Customer_Family_Name).trim();
+                    }
+                    if (myData.containsKey(Customer_Given_Name))
+                    {
+                        Log.v("TAG", "users Given name:" + myData.get(Customer_Given_Name));
+                        try
+                        {
+                            String CustomerName[] = myData.get(Customer_Given_Name).split(" ");
+                            String fname = CustomerName[0].trim();
+                            String mname = CustomerName[1].substring(0, 1).trim();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (myData.containsKey(Street_Address_1))
+                    {
+                        Log.v("TAG", "Address line 1 :" + myData.get(Street_Address_1));
+                        try
+                        {
+                            String address = myData.get(Street_Address_1).trim();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (myData.containsKey(City))
+                    {
+                        Log.v("TAG", "City:" + myData.get(City));
+                        String city = myData.get(City).trim();
+                    }
+                    if (myData.containsKey(Postal_Code))
+                    {
+                        Log.v("TAG", "Pin Code:" + myData.get(Postal_Code));
+                        String zipcode = myData.get(Postal_Code).substring(0, 5).trim();
+                    }
+                    if (myData.containsKey(Date_Of_Birth))
+                    {
+                        Log.v("TAG", "Birth Date    :" + myData.get(Date_Of_Birth));
+                        String birthday = myData.get(Date_Of_Birth).substring(0, 2) + "/" + myData.get(Date_Of_Birth).substring(2, 4)
+                                + "/" + myData.get(Date_Of_Birth).substring(4);
+                    }
+                    if (myData.containsKey(Customer_Id_Number))
+                    {
+                        String licence_number = myData.get(Customer_Id_Number).trim();
+                        Log.e("TAG", "Licence Number is :" + licence_number);
+                    }
+                    statusMessage.setText(R.string.barcode_success);
+                    barcodeValue.setText(barcode.displayValue);
+                    Log.d(TAG, "Barcode read: " + barcode.displayValue);
+                } else {
+                    statusMessage.setText(R.string.barcode_failure);
+                    Log.d(TAG, "No barcode captured, intent data is null");
+                }
+            } else {
+                statusMessage.setText(String.format(getString(R.string.barcode_error),
+                        CommonStatusCodes.getStatusCodeString(resultCode)));
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }
