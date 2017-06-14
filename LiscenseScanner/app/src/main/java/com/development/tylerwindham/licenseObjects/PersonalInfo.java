@@ -1,10 +1,13 @@
 package com.development.tylerwindham.licenseObjects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Dustin on 6/14/2017.
  */
 
-public class PersonalInfo {
+public class PersonalInfo implements Parcelable{
 
     private String firstName;
     private String lastName;
@@ -59,5 +62,26 @@ public class PersonalInfo {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator<PersonalInfo> CREATOR = new Parcelable.Creator<PersonalInfo>() {
+        public PersonalInfo createFromParcel(Parcel in) {
+            return new PersonalInfo();
+        }
+
+        public PersonalInfo[] newArray(int size) {
+            return new PersonalInfo[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(firstName + lastName);
     }
 }
