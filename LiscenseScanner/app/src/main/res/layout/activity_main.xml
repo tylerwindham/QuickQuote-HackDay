@@ -25,5 +25,13 @@
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="492dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        app:srcCompat="@mipmap/outline" />
+
 
 </FrameLayout>
