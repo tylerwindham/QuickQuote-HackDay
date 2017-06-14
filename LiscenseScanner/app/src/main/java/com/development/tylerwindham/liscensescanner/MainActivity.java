@@ -224,6 +224,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     statusMessage.setText(R.string.barcode_success);
                     barcodeValue.setText(barcode.displayValue);
                     Log.d(TAG, "Barcode read: " + barcode.displayValue);
+
                 } else {
                     statusMessage.setText(R.string.barcode_failure);
                     Log.d(TAG, "No barcode captured, intent data is null");
