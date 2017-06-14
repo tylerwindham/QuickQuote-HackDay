@@ -27,11 +27,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="275dp"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         app:srcCompat="@mipmap/outline" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="Take a picture of your license"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 
 </FrameLayout>
