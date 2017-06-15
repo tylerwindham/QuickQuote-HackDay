@@ -3,9 +3,12 @@ package com.development.tylerwindham.liscensescanner;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,6 +21,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DisplayDataActivity extends AppCompatActivity {
+
+    public static final String REQUEST_TYPE = "Request Type";
+
+    private CompoundButton autoFocus;
+    private CompoundButton useFlash;
 
     private static final int RC_BARCODE_CAPTURE = 9001;
     private static final String TAG = "BarcodeMain";
@@ -32,6 +40,9 @@ public class DisplayDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_data);
+
+        autoFocus = (CompoundButton) findViewById(R.id.auto_focus2);
+        useFlash = (CompoundButton) findViewById(R.id.use_flash2);
 
         Intent intent = getIntent();
 
@@ -62,6 +73,9 @@ public class DisplayDataActivity extends AppCompatActivity {
 
     public void onGoTakePicture(View view){
         Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+        intent.putExtra(BarcodeCaptureActivity.AutoFocus, autoFocus.isChecked());
+        intent.putExtra(BarcodeCaptureActivity.UseFlash, !useFlash.isChecked());
+        intent.putExtra(DisplayDataActivity.REQUEST_TYPE, RC_BARCODE_CAPTURE);
         startActivity(intent);
     }
 
