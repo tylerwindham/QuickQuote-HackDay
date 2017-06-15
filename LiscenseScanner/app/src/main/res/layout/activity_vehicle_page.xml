@@ -1,119 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#f7bebb"
-    android:orientation="vertical"
+    android:paddingRight="5dp"
     tools:context="com.development.tylerwindham.liscensescanner.VehiclePageActivity">
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_width="395dp"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="200dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="150sp"
-                android:layout_height="150sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/car" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vehicle 1" />
-
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/mileage"
-                    style="@android:style/Widget.AutoCompleteTextView"
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/car" />
+
+                <TextView
+                    android:id="@+id/vehicle_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Mileage"
-                    android:inputType="numberSigned" />
-            </android.support.design.widget.TextInputLayout>
+                    android:text="Vehicle 1" />
 
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Include?" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-        </LinearLayout>
+                    <EditText
+                        android:id="@+id/mileage"
+                        style="@android:style/Widget.AutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Mileage"
+                        android:inputType="numberSigned" />
+                </android.support.design.widget.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Include?" />
+
+            </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="200dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="150sp"
-                android:layout_height="150sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/car" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vehicle 1" />
-
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
-                <EditText
-                    style="@android:style/Widget.AutoCompleteTextView"
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/car" />
+
+                <TextView
+                    android:id="@+id/vehicle_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Mileage"
-                    android:inputType="numberSigned" />
-            </android.support.design.widget.TextInputLayout>
+                    android:text="Vehicle 1" />
 
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Include?" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-        </LinearLayout>
+                    <EditText
+                        style="@android:style/Widget.AutoCompleteTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Mileage"
+                        android:inputType="numberSigned" />
+                </android.support.design.widget.TextInputLayout>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Include?" />
+
+            </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/continue_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continue" />
+        android:layout_marginBottom="16dp"
+        android:text="Continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="159dp" />
+</android.support.constraint.ConstraintLayout>
 
-</LinearLayout>
