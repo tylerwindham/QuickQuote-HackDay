@@ -39,7 +39,9 @@
                 android:layout_height="20dp"
                 android:layout_weight="0.13"
                 tools:layout_editor_absoluteY="25dp"
-                tools:layout_editor_absoluteX="0dp" />
+                tools:layout_editor_absoluteX="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp" />
 
 
 
@@ -186,7 +188,9 @@
                 android:layout_weight="0.13"
                 fancy:srcCompat="@android:drawable/ic_menu_mylocation"
                 tools:layout_editor_absoluteY="25dp"
-                tools:layout_editor_absoluteX="0dp" />
+                tools:layout_editor_absoluteX="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="175dp" />
 
             <CheckBox
                 android:id="@+id/auto_focus2"
