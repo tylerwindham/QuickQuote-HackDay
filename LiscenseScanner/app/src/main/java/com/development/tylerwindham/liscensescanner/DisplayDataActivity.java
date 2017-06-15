@@ -81,6 +81,8 @@ public class DisplayDataActivity extends AppCompatActivity {
 
     public void onGoVehicle(View view){
         Intent intent = new Intent(this, VehiclePageActivity.class);
+        EditText etFistName = (EditText)findViewById(R.id.etFirstName);
+        personalInfo.setFirstName(etFistName.getText().toString());
         intent.putExtra(PersonalInfo.PERSONAL_INFO, personalInfo);
         startActivity(intent);
     }
