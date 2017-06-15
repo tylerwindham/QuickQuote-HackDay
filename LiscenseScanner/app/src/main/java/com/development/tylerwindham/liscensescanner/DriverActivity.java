@@ -11,17 +11,16 @@ import android.widget.ListView;
 import com.development.tylerwindham.licenseObjects.AdditionalDrivers;
 import com.development.tylerwindham.licenseObjects.Driver;
 
-public class DriverActivity extends ListActivity {
+public class DriverActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
-        ListView listView = getListView();
 
     }
 
     public void onGoQuotePage(View view){
-        
+
     }
 }
