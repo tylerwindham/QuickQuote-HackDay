@@ -45,6 +45,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DriverActivity"></activity>
+
+        <activity android:name=".VehiclePageActivity"></activity>
     </application>
 
 </manifest>
