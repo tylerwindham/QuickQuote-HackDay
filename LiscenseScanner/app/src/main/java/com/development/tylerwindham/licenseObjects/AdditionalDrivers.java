@@ -31,8 +31,8 @@ public class AdditionalDrivers implements Parcelable{
         driver1.setAccident(accident1);
         drivers.add(driver1);
         Driver driver2 = new Driver();
-        driver1.setFirstName("Indiana");
-        driver1.setLastName("Jones");
+        driver2.setFirstName("Indiana");
+        driver2.setLastName("Jones");
         Accident accident2 = new Accident();
         accident2.setDescription("I hate snakes");
         accident2.setInjured(true);
