@@ -56,6 +56,7 @@ public class DriverActivity extends AppCompatActivity {
     }
 
     public void onGoQuotePage(View view){
-
+        Intent intent = new Intent(this, CoveragePackageActivity.class);
+        startActivity(intent);
     }
 }
