@@ -19,14 +19,16 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
             android:name=".BarcodeCaptureActivity"
-            android:label="Read Barcode" />
+            android:label="Read Barcode"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DisplayDataActivity"
             android:parentActivityName=".MainActivity"
@@ -44,9 +46,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DriverActivity" />
-        <activity android:name=".VehiclePageActivity" />
-        <activity android:name=".CoveragePackageActivity"></activity>
+        <activity android:name=".DriverActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".VehiclePageActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CoveragePackageActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
