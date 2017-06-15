@@ -34,6 +34,7 @@ public class DisplayDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_data);
 
         Intent intent = getIntent();
+
         //String data = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         Barcode barcode = (Barcode)intent.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
         //// TODO: Need to pass result. For now, pass success always.
@@ -60,12 +61,13 @@ public class DisplayDataActivity extends AppCompatActivity {
     }
 
     public void onGoTakePicture(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
         startActivity(intent);
     }
 
     public void onGoVehicle(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, VehiclePageActivity.class);
+        intent.putExtra(PersonalInfo.PERSONAL_INFO, personalInfo);
         startActivity(intent);
     }
 

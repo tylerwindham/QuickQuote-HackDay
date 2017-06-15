@@ -9,6 +9,8 @@ import android.os.Parcelable;
 
 public class PersonalInfo implements Parcelable{
 
+    final public static String PERSONAL_INFO = "PersonalInfo";
+
     private String firstName;
     private String lastName;
     private String middleInitial;
