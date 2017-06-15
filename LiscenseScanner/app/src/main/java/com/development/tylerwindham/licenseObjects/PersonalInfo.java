@@ -16,6 +16,8 @@ public class PersonalInfo implements Parcelable{
     private String dateOfBirth;
     private Address address;
 
+    private Accident accident;
+
     public String getFirstName() {
         return firstName;
     }
@@ -62,6 +64,14 @@ public class PersonalInfo implements Parcelable{
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Accident getAccident() {
+        return accident;
+    }
+
+    public void setAccident(Accident accident) {
+        this.accident = accident;
     }
 
     // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
