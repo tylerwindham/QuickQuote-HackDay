@@ -11,6 +11,8 @@ import com.development.tylerwindham.licenseObjects.Vehicles;
 
 import org.w3c.dom.Text;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class VehiclePageActivity extends AppCompatActivity {
 
     private Vehicles vehicles;
@@ -19,7 +21,7 @@ public class VehiclePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_page);
 
-        Button continueButton = (Button) findViewById(R.id.continue_button);
+        FancyButton continueButton = (FancyButton) findViewById(R.id.continue_button);
         TextView vehicleOne = (TextView)  findViewById(R.id.vehicle_one);
         TextView vehicleTwo = (TextView) findViewById(R.id.vehicle_two);
         vehicles = new Vehicles();
