@@ -16,6 +16,10 @@ public class Vehicles implements Parcelable {
         return vehicles;
     }
 
+    public Vehicles() {
+        setVehicles(vehicles);
+    }
+
     public void setVehicles(ArrayList<Vehicle> vehicles) {
         Vehicle vehicle1 = new Vehicle();
         vehicle1.setVehicleName("2012 Acura Mdx");
