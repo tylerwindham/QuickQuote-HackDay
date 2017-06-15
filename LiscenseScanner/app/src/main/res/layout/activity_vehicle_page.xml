@@ -23,7 +23,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="Vehicle"
-                app:titleTextColor="000000" />
+                app:titleTextColor="#ffffff" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.constraint.ConstraintLayout
