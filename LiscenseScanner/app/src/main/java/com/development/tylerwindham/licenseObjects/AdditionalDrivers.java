@@ -12,11 +12,16 @@ import java.util.ArrayList;
 public class AdditionalDrivers implements Parcelable{
 
     private ArrayList<Driver> drivers = new ArrayList<Driver>();
+
+    public AdditionalDrivers(){
+        setDrivers(drivers);
+    }
+
     public ArrayList<Driver> getDrivers() {
         return drivers;
     }
 
-    public void getDrivers(ArrayList<Driver> drivers) {
+    public void setDrivers(ArrayList<Driver> drivers) {
         Driver driver1 = new Driver();
         driver1.setFirstName("Han");
         driver1.setLastName("Solo");
