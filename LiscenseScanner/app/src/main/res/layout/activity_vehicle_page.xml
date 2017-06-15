@@ -1,140 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f7bebb"
-    android:paddingRight="5dp"
-    tools:context="com.development.tylerwindham.liscensescanner.VehiclePageActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="200dp"
-        android:orientation="horizontal"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginRight="10dp">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="#e1261c"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Vehicle"
+                app:titleTextColor="000000" />
+        </android.support.design.widget.AppBarLayout>
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="150sp"
-                    android:layout_height="150sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    app:srcCompat="@mipmap/car" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f7bebb"
+            android:paddingRight="5dp"
+            tools:context="com.development.tylerwindham.liscensescanner.VehiclePageActivity">
 
-                <TextView
-                    android:id="@+id/vehicle_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vehicle 1" />
+            <LinearLayout
+                android:layout_width="395dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1">
+                <android.support.v7.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="10dp">
 
-                    <EditText
-                        android:id="@+id/mileage"
-                        style="@android:style/Widget.AutoCompleteTextView"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Mileage"
-                        android:inputType="numberSigned" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/checkBox4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Include?" />
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="150sp"
+                            android:layout_height="150sp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            app:srcCompat="@mipmap/car" />
+
+                        <TextView
+                            android:id="@+id/vehicle_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vehicle 1" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/mileage"
+                                style="@android:style/Widget.AutoCompleteTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:hint="Mileage"
+                                android:inputType="numberSigned" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Include?" />
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="150sp"
+                            android:layout_height="150sp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            app:srcCompat="@mipmap/car" />
+
+                        <TextView
+                            android:id="@+id/vehicle_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vehicle 1" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_weight="1">
+
+                            <EditText
+                                style="@android:style/Widget.AutoCompleteTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:hint="Mileage"
+                                android:inputType="numberSigned" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Include?" />
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="200dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="150sp"
-                    android:layout_height="150sp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    app:srcCompat="@mipmap/car" />
-
-                <TextView
-                    android:id="@+id/vehicle_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vehicle 1" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1">
-
-                    <EditText
-                        style="@android:style/Widget.AutoCompleteTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Mileage"
-                        android:inputType="numberSigned" />
-                </android.support.design.widget.TextInputLayout>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Include?" />
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/continue_button"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="17dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                fancy:fb_borderColor="#FFFFFF"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="@color/colorPrimaryDark"
+                fancy:fb_focusColor="#FF002A50"
+                fancy:fb_radius="30dp"
+                fancy:fb_text="Continue"
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="20dp" />
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/continue_button"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        fancy:fb_borderColor="#FFFFFF"
-        fancy:fb_borderWidth="1dp"
-        fancy:fb_defaultColor="@color/colorPrimaryDark"
-        fancy:fb_focusColor="#FF002A50"
-        fancy:fb_radius="30dp"
-        fancy:fb_text="Continue"
-        fancy:fb_textColor="#FFFFFF"
-        fancy:fb_textSize="20dp" />
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
 
