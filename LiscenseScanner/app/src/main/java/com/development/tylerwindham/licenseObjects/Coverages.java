@@ -11,6 +11,12 @@ import java.util.ArrayList;
 
 public class Coverages implements Parcelable {
 
+    private ArrayList<Coverage> coverages = new ArrayList<Coverage>();
+
+    public Coverages(){
+        setCoverages(coverages);
+    }
+
     public ArrayList<Coverage> getCoverages() {
         return coverages;
     }
@@ -30,8 +36,6 @@ public class Coverages implements Parcelable {
         coverages.add(coverage3);
         this.coverages = coverages;
     }
-
-    private ArrayList<Coverage> coverages = new ArrayList<Coverage>();
 
     // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
     public static final Parcelable.Creator<Coverages> CREATOR = new Parcelable.Creator<Coverages>() {
