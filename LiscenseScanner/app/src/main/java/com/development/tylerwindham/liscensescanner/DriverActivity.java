@@ -21,15 +21,18 @@ public class DriverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver);
 
         Intent intent = getIntent();
-        PersonalInfo personalInfo = (PersonalInfo)intent.getParcelableExtra(PersonalInfo.PERSONAL_INFO);
+        PersonalInfo personalInfo = (PersonalInfo)intent.getSerializableExtra(PersonalInfo.PERSONAL_INFO);
 
-//        EditText etxtFirstName = (EditText) findViewById(R.id.etxtFirstName);
-//        etxtFirstName.setText(personalInfo.getFirstName());
-//        EditText etxtMiddleName = (EditText) findViewById(R.id.etxtMiddleName);
-//        etxtMiddleName.setText(personalInfo.getMiddleInitial());
-//        EditText etxtLastName = (EditText) findViewById(R.id.etxtLastName);
-//        etxtLastName.setText(personalInfo.getLastName());
-//        EditText etxtAccidentApplicant = (EditText) findViewById(R.id.etxtAccidentApplicant);
+        if (personalInfo != null){
+            EditText etxtFirstName = (EditText) findViewById(R.id.etxtFirstName);
+            etxtFirstName.setText(personalInfo.getFirstName());
+            EditText etxtMiddleName = (EditText) findViewById(R.id.etxtMiddleName);
+            etxtMiddleName.setText(personalInfo.getMiddleInitial());
+            EditText etxtLastName = (EditText) findViewById(R.id.etxtLastName);
+            etxtLastName.setText(personalInfo.getLastName());
+            EditText etxtAccidentApplicant = (EditText) findViewById(R.id.etxtAccidentApplicant);
+            etxtAccidentApplicant.setText("");
+        }
 
         AdditionalDrivers drivers = new AdditionalDrivers();
         EditText etxtFirstName2 = (EditText) findViewById(R.id.etxtFirstName2);

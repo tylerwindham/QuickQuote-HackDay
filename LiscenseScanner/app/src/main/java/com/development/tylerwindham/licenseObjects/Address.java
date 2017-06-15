@@ -3,11 +3,13 @@ package com.development.tylerwindham.licenseObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by Dustin on 6/14/2017.
  */
 
-public class Address implements Parcelable {
+public class Address implements Serializable {
 
     private String street;
     private String zipCode;
@@ -62,13 +64,13 @@ public class Address implements Parcelable {
         return this.street+" "+this.city+", "+this.state+" "+this.zipCode;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//
+//    }
 }

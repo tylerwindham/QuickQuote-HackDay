@@ -3,11 +3,13 @@ package com.development.tylerwindham.licenseObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by Dustin on 6/14/2017.
  */
 
-public class PersonalInfo implements Parcelable{
+public class PersonalInfo implements Serializable{
 
     final public static String PERSONAL_INFO = "PersonalInfo";
 
@@ -87,13 +89,13 @@ public class PersonalInfo implements Parcelable{
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(firstName + lastName);
-    }
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel parcel, int i) {
+//        parcel.writeString(firstName + lastName);
+//    }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.development.tylerwindham.licenseObjects.PersonalInfo;
 import com.development.tylerwindham.licenseObjects.Vehicles;
 
 import org.w3c.dom.Text;
@@ -16,10 +17,15 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class VehiclePageActivity extends AppCompatActivity {
 
     private Vehicles vehicles;
+private PersonalInfo personalInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_page);
+
+        Intent intent = getIntent();
+        personalInfo = (PersonalInfo)intent.getSerializableExtra(PersonalInfo.PERSONAL_INFO);
 
         FancyButton continueButton = (FancyButton) findViewById(R.id.continue_button);
         TextView vehicleOne = (TextView)  findViewById(R.id.vehicle_one);
@@ -35,6 +41,7 @@ public class VehiclePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DriverActivity.class);
+                intent.putExtra(PersonalInfo.PERSONAL_INFO, personalInfo);
                 startActivity(intent);
             }
         });
