@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
                 android:addStatesFromChildren="false"
                 android:animateLayoutChanges="false"
                 android:animationCache="false"
@@ -104,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 card_view:cardCornerRadius="4dp">
 
                 <ImageView
